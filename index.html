@@ -1,41 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Can I Build A Road In Catan?</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Can I Build A Road In Catan?</title>
 </head>
 <body>
 	<div id="entirething"> </div>
 	
-	<script>
-		function testIfYouCanBuildARoadInCatan() {
-			message = "You cannot build a road in Catan, sorry."
-			if (document.getElementById("wood").value > 0 && document.getElementById("brick").value > 0) {
-				message = "YOU CAN BUILD A ROAD IN CATAN!"
-			} 
-			message += `<br><br><button onclick="restoreSite()"> Try again with a different hand! </button>`
-			if (document.getElementById("wood").value > 19 ||
-				document.getElementById("brick").value > 19 ||
-				document.getElementById("wheat").value > 19 ||
-				document.getElementById("ore").value > 19 ||
-				document.getElementById("sheep").value > 19) {
-				message = `There are only 19 of each resource. Kindly treat this app with respect and brevity.<br><br><button onclick="restoreSite()"> I apologize and will be more mindful. </button>`
-			}
-			document.getElementById("entirething").innerHTML = message
-		}
+    <script>
+		const SETTLEMENT = 0
+		const CITY = 1
+		const ROAD = 2
+		const DEV_CARD = 3
 		
-		function restoreSite() {
-			document.getElementById("entirething").innerHTML = `
-			Wood: <input id="wood"> <br>
-			Brick: <input id="brick"> <br>
-			Wheat: <input id="wheat"> <br>
-			Ore: <input id="ore"> <br>
-			Sheep: <input id="sheep"> <br><br>
-			<button onclick="testIfYouCanBuildARoadInCatan()">Can you build a road in Catan?</button> <br>`
-		}
-	restoreSite()
+		const WOOD = 0
+		const BRICK = 1
+		const WHEAT = 2
+		const ORE = 3
+		const SHEEP = 4
+		const VERB = 5
+		const STRUCTURE_NAME = 6
+		
+		let max_of_one_resource = 19
+		
+		let structures = new Array(4)
+		structures[SETTLEMENT] = [1,1,1,0,1,"build","settlement"]
+		structures[CITY] = [0,0,3,2,0,"upgrade to","city"]
+		structures[ROAD] = [1,1,0,0,0,"build","road"]
+		structures[DEV_CARD] = [0,0,1,1,1,"buy","development card"]
+		
+		let resource_names = ["wood", "brick", "wheat", "ore", "sheep"]
+		
+        function testHand(structure_to_build) {
+			
+			let canConstruct = true
+			let takingThisSeriously = true
+			
+			for (let i = 0; i < VERB; i++) {
+				let r = document.getElementById(resource_names[i]).value
+				console.log(r, document.getElementById(resource_names[i]))
+				if (r < structures[structure_to_build][i]) {
+					canConstruct = false
+				}
+				if (r > max_of_one_resource) {
+					takingThisSeriously = false
+				}
+			}
+			
+		message = "You cannot " + structures[structure_to_build][VERB] + " a " + structures[structure_to_build][STRUCTURE_NAME] + " in Catan, sorry."
+		if (canConstruct == true) {
+			message = "YOU CAN " + structures[structure_to_build][VERB].toUpperCase() + " A " + structures[structure_to_build][STRUCTURE_NAME].toUpperCase() + " IN CATAN!"
+		} 
+			message += `<br><br><button onclick="restoreSite()"> Try again with a different hand! </button>`
+			if (takingThisSeriously == false) {
+				if (max_of_one_resource == 19) {
+					message = `There are only 19 of each resource. Kindly treat this app with respect and brevity.<br><br><button onclick="restoreSite()"> I apologize and will be more mindful. </button><br><button onclick="eatShoe()"> I am playing with the 5-6 Player Expansion Pack.</button>`
+				} else {
+					message = "Regardless of whether you have the expansion, you are obviously not taking this seriously. Your application rights have been revoked until you reload the webpage."
+				}
+			}
+		document.getElementById("entirething").innerHTML = message
+        }
+		
+        function restoreSite() {
+		document.getElementById("entirething").innerHTML = `
+			Wood: <input id="wood" value="0" onclick="this.setSelectionRange(0, this.value.length)"> <br>
+			Brick: <input id="brick" value="0" onclick="this.setSelectionRange(0, this.value.length)"> <br>
+			Wheat: <input id="wheat" value="0" onclick="this.setSelectionRange(0, this.value.length)"> <br>
+			Ore: <input id="ore" value="0" onclick="this.setSelectionRange(0, this.value.length)"> <br>
+			Sheep: <input id="sheep" value="0"> <br><br>
+			<button onclick="testHand(ROAD)">Can you build a road in Catan?</button> <br>`
+        }
+		
+	function eatShoe() {
+		document.getElementById("entirething").innerHTML = `I apologize profusely. Your card limit has been updated to reflect this. <br><br><button onclick="restoreSite();">It's okay. I'd be upset if I thought someone was not respecting this Catan calculator as well.</button>`
+		max_of_one_resource += 5
+	}
+        restoreSite()
     </script>
 </body>
 </html>
