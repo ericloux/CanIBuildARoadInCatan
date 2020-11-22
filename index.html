@@ -9,16 +9,19 @@
 <body>
     <script>
         function testIfYouCanBuildARoadInCatan() {
-            console.log("Test!")
-            document.getElementById("entirething").innerHTML = "Testing"   
+            message = "You cannot build a road in Catan, sorry."
+            if (document.getElementById("wood").value > 0 && document.getElementById("brick").value > 0) {
+                message = "YOU CAN BUILD A ROAD IN CATAN!"
+            } 
+            document.getElementById("entirething").innerHTML = message
         }
     </script>
     <div id="entirething">
-        Wood: <input type="number" placeholder="logs, lumber" max="0" min="19" size="12"> <br>
-        Brick: <input type="number" placeholder="clay, mortar" max="0" min="19" size="12"> <br>
-        Wheat: <input type="number" placeholder="grain, hay" max="0" min="19" size="12"> <br>
-        Ore: <input type="number" placeholder="coal, iron" max="0" min="19" size="12"> <br>
-        Sheep: <input type="number" placeholder="wool, meat" max="0" min="19" size="12"> <br><br>
+        Wood: <input id="wood" type="number" placeholder="logs, lumber" max="0" min="19" size="20"> <br>
+        Brick: <input id="brick" type="number" placeholder="clay, mortar" max="0" min="19" size="20"> <br>
+        Wheat: <input id="wheat" type="number" placeholder="grain, hay" max="0" min="19" size="20"> <br>
+        Ore: <input id="ore" type="number" placeholder="coal, iron" max="0" min="19" size="20"> <br>
+        Sheep: <input id="sheep" type="number" placeholder="wool, meat" max="0" min="19" size="20"> <br><br>
         <button onclick="testIfYouCanBuildARoadInCatan()">Can you build a road in Catan?</button> <br>
     </div>
 </body>
