@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Can I Build A Road In Catan?</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Can I Build A Road In Catan?</title>
 </head>
 <body>
 	<div id="entirething"> </div>
 	
-    <script>
-        function testIfYouCanBuildARoadInCatan() {
-            message = "You cannot build a road in Catan, sorry."
-            if (document.getElementById("wood").value > 0 && document.getElementById("brick").value > 0) {
-                message = "YOU CAN BUILD A ROAD IN CATAN!"
-            } 
+	<script>
+		function testIfYouCanBuildARoadInCatan() {
+			message = "You cannot build a road in Catan, sorry."
+			if (document.getElementById("wood").value > 0 && document.getElementById("brick").value > 0) {
+				message = "YOU CAN BUILD A ROAD IN CATAN!"
+			} 
 			message += `<br><br><button onclick="restoreSite()"> Try again with a different hand! </button>`
-            document.getElementById("entirething").innerHTML = message
-        }
-        function restoreSite() {
-            document.getElementById("entirething").innerHTML = `
-                    Wood: <input id="wood"> <br>
-                    Brick: <input id="brick"> <br>
-                    Wheat: <input id="wheat"> <br>
-                    Ore: <input id="ore"> <br>
-                    Sheep: <input id="sheep"> <br>
-                    <button onclick="testIfYouCanBuildARoadInCatan()">Can you build a road in Catan?</button> <br>`
-        }
-        restoreSite()
+			document.getElementById("entirething").innerHTML = message
+		}
+		
+		function restoreSite() {
+			document.getElementById("entirething").innerHTML = `
+			Wood: <input id="wood"> <br>
+			Brick: <input id="brick"> <br>
+			Wheat: <input id="wheat"> <br>
+			Ore: <input id="ore"> <br>
+			Sheep: <input id="sheep"> <br><br>
+			<button onclick="testIfYouCanBuildARoadInCatan()">Can you build a road in Catan?</button> <br>`
+		}
+	restoreSite()
     </script>
 </body>
 </html>
