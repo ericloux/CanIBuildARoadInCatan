@@ -8,10 +8,18 @@
     <title>Can I Build A Road In Catan?</title>
 </head>
 <body>
-  Wood: <input type="number" id="alu-x-register-decimal" placeholder="logs, lumber" max="0" min="19">
-  Brick: <input type="number" id="alu-y-register-decimal" placeholder="clay, mortar" max="0" min="19">
-  Wheat: <input type="number" id="alu-y-register-decimal" placeholder="grain, hay" max="0" min="19">
-  Ore: <input type="number" id="alu-y-register-decimal" placeholder="coal, iron" max="0" min="19">
-  Sheep: <input type="number" id="alu-y-register-decimal" placeholder="wool, meat" max="0" min="19">
+    <script>
+        function testIfYouCanBuildARoadInCatan() {
+            document.getElementById("entirething").value = "Testing"   
+        }
+    </script>
+    <div id="entirething">
+        Wood: <input type="number" placeholder="logs, lumber" max="0" min="19" size="12"> <br>
+        Brick: <input type="number" placeholder="clay, mortar" max="0" min="19" size="12"> <br>
+        Wheat: <input type="number" placeholder="grain, hay" max="0" min="19" size="12"> <br>
+        Ore: <input type="number" placeholder="coal, iron" max="0" min="19" size="12"> <br>
+        Sheep: <input type="number" placeholder="wool, meat" max="0" min="19" size="12"> <br>
+        <button>Can you build a road in Catan?</button> <br>
+    </div>
 </body>
 </html>
