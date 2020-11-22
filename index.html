@@ -16,6 +16,13 @@
 				message = "YOU CAN BUILD A ROAD IN CATAN!"
 			} 
 			message += `<br><br><button onclick="restoreSite()"> Try again with a different hand! </button>`
+			if (document.getElementById("wood").value > 19 ||
+				document.getElementById("brick").value > 19 ||
+				document.getElementById("wheat").value > 19 ||
+				document.getElementById("ore").value > 19 ||
+				document.getElementById("sheep").value > 19) {
+				message = `There are only 19 of each resource. Kindly treat this app with respect and brevity.<br><br><button onclick="restoreSite()"> I apologize and will be more mindful. </button>`
+			}
 			document.getElementById("entirething").innerHTML = message
 		}
 		
